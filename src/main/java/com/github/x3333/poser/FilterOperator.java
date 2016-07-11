@@ -12,14 +12,14 @@
  * the License.
  */
 
-package com.github.x3333.poser.filter;
+package com.github.x3333.poser;
 
 /**
  * The comparison's type between the property and the value in a Filter.
  *
  * @author Tercio Gaudencio Filho (terciofilho [at] gmail.com)
  */
-public enum Operator {
+public enum FilterOperator {
 
   EQUAL, NOT_EQUAL,
 
