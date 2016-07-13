@@ -16,6 +16,8 @@ package com.github.x3333.poser;
 
 import java.util.Objects;
 
+import com.google.common.base.MoreObjects;
+
 /**
  * @author Tercio Gaudencio Filho (terciofilho [at] gmail.com)
  */
@@ -30,6 +32,7 @@ public class Search {
 
   //
   // Instance Variables
+
   protected final Class<?> searchClass;
 
   // Search
@@ -44,6 +47,7 @@ public class Search {
 
   //
   // Constructor
+
   public Search(final Class<?> searchClass) {
     this.searchClass = searchClass;
   }
@@ -116,6 +120,8 @@ public class Search {
     this.page = page;
   }
 
+  //
+
   @Override
   public int hashCode() {
     return Objects.hash(//
@@ -136,40 +142,35 @@ public class Search {
     if (this == obj) {
       return true;
     }
-    if (obj == null) {
-      return false;
-    }
-    if (this.getClass() != obj.getClass()) {
+    if (obj == null || this.getClass() != obj.getClass()) {
       return false;
     }
 
     final Search other = (Search) obj;
+    return Objects.equals(this.searchClass, other.searchClass)
 
-    if (!Objects.equals(this.searchClass, other.searchClass)) {
-      return false;
-    }
+        && Objects.equals(this.resultType, other.resultType) //
+        && Objects.equals(this.disjunction, other.disjunction) //
+        && Objects.equals(this.distinct, other.distinct) //
 
-    if (!Objects.equals(this.resultType, other.resultType)) {
-      return false;
-    }
-    if (!Objects.equals(this.disjunction, other.disjunction)) {
-      return false;
-    }
-    if (!Objects.equals(this.distinct, other.distinct)) {
-      return false;
-    }
+        && Objects.equals(this.firstResult, other.firstResult) //
+        && Objects.equals(this.maxResults, other.maxResults) //
+        && Objects.equals(this.page, other.page);
+  }
 
-    if (!Objects.equals(this.firstResult, other.firstResult)) {
-      return false;
-    }
-    if (!Objects.equals(this.maxResults, other.maxResults)) {
-      return false;
-    }
-    if (!Objects.equals(this.page, other.page)) {
-      return false;
-    }
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this) //
+        .add("searchClass", this.searchClass) //
 
-    return true;
+        .add("resultType", this.resultType) //
+        .add("disjunction", this.disjunction) //
+        .add("distinct", this.distinct) //
+
+        .add("firstResult", this.firstResult) //
+        .add("maxResults", this.maxResults) //
+        .add("page", this.page) //
+        .toString();
   }
 
   //
